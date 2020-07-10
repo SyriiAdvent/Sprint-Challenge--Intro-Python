@@ -91,8 +91,20 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
   within = []
 
+  # find max cards
+  max_lat = lat1 if lat1 > lat2 else lat2
+  max_lon = lon1 if lon1 > lon2 else lon2
+  # find minimium cords
+  min_lat = lat1 if lat1 < lat2 else lat2
+  min_lon = lon1 if lon1 < lon2 else lon2
+
   # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
 
+  for loc in cities:
+    if loc.lat < max_lat and loc.lat > min_lat and loc.lon < max_lon and loc.lon > min_lon:
+      within.append(loc)
+
   return within
+  
